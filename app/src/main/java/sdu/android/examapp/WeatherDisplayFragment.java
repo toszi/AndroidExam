@@ -3,19 +3,15 @@ package sdu.android.examapp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link WeatherDisplayFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class WeatherDisplayFragment extends Fragment {
-
     public WeatherDisplayFragment(){
 
     }
@@ -31,4 +27,5 @@ public class WeatherDisplayFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_weather_display, container, false);
     }
+
 }
