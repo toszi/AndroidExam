@@ -23,19 +23,25 @@ public class RequestHandler {
 
     private static final String TAG = "RequestHandler";
 
-    private final static String WEATHER_API_BASE_URL = "https://api.openweathermap.org/";
+    private final static String WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/2.5/";
     private final static String API_KEY = "7674b889ee154b8410ac0be7b9dcd5e9";
     private final static String PARAM_APPID = "appid";
+    //parameters for current day request
     private final static String PARAM_QUERY = "q";
-    private final static String PARAM_AMOUNT_OF_DAYS = "cnt";
+
+    //parameters for forecast request
+    private final static String PARAM_LON = "lon";
+    private final static String PARAM_LAT = "lat";
+    private final static String PARAM_EXCLUDE = "exclude";
 
     //variables
     private ArrayList<String> weatherDataList = new ArrayList<>();
     private ArrayList<String> imageUrlList = new ArrayList<>();
 
     static URL createCurrentDayURL(String city){
-        Uri builtUri = Uri.parse(WEATHER_API_BASE_URL+"data/2.5/weather")
-                .buildUpon().appendQueryParameter(PARAM_QUERY, city)
+        Uri builtUri = Uri.parse(WEATHER_API_BASE_URL+"weather")
+                .buildUpon()
+                .appendQueryParameter(PARAM_QUERY, city)
                 .appendQueryParameter(PARAM_APPID, API_KEY)
                 .build();
 
@@ -70,10 +76,13 @@ public class RequestHandler {
             }
         });
     }
-
-    static URL createForecastURL(String city){
-        Uri builtUri = Uri.parse(WEATHER_API_BASE_URL+"data/2.5/weather")
-                .buildUpon().appendQueryParameter(PARAM_QUERY, city)
+/*
+    static URL createForecastURL(){
+        Uri builtUri = Uri.parse(WEATHER_API_BASE_URL+"onecall")
+                .buildUpon()
+                .appendQueryParameter(PARAM_LAT, "55.4")
+                .appendQueryParameter(PARAM_LON, "10.39")
+                .appendQueryParameter(PARAM_EXCLUDE, "current,minutely,hourly")
                 .appendQueryParameter(PARAM_APPID, API_KEY)
                 .build();
 
@@ -107,7 +116,7 @@ public class RequestHandler {
                 //weatherDataList.add("Current Weather:\n" + weatherInfo.getName() + ": " + weatherInfo.getMain().getTemp() + " \u2103");
             }
         });
-    }
+    }*/
 
     public ArrayList<String> getWeatherDataList() {
         return weatherDataList;

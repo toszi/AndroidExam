@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             handler.getCurrentResponseFromHttpUrl(RequestHandler.createCurrentDayURL("Odense"));
-            handler.getForecastResponseFromHttpUrl(RequestHandler.createForecastURL("Odense"));
+            //handler.getForecastResponseFromHttpUrl(RequestHandler.createForecastURL());
         } catch (IOException e) {
             Log.d(TAG + "-IOexception", e.toString());
         }
