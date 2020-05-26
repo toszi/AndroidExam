@@ -38,6 +38,8 @@ public class RequestHandler {
     private ArrayList<String> weatherDataList = new ArrayList<>();
     private ArrayList<String> imageUrlList = new ArrayList<>();
 
+
+
     static URL createCurrentDayURL(String city){
         Uri builtUri = Uri.parse(WEATHER_API_BASE_URL+"weather")
                 .buildUpon()
@@ -76,6 +78,7 @@ public class RequestHandler {
             }
         });
     }
+
 /*
     static URL createForecastURL(){
         Uri builtUri = Uri.parse(WEATHER_API_BASE_URL+"onecall")
@@ -116,8 +119,8 @@ public class RequestHandler {
                 //weatherDataList.add("Current Weather:\n" + weatherInfo.getName() + ": " + weatherInfo.getMain().getTemp() + " \u2103");
             }
         });
-    }*/
-
+    }
+*/
     public ArrayList<String> getWeatherDataList() {
         return weatherDataList;
     }
