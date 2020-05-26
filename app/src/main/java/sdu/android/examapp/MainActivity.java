@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         final RequestHandler handler = new RequestHandler();
         try
         {
-            handler.getCurrentResponseFromHttpUrl(RequestHandler.createURL("Odense"));
+            handler.getCurrentResponseFromHttpUrl(RequestHandler.createCurrentDayURL("Odense"));
+            handler.getForecastResponseFromHttpUrl(RequestHandler.createForecastURL("Odense"));
         } catch (IOException e) {
             Log.d(TAG + "-IOexception", e.toString());
         }
