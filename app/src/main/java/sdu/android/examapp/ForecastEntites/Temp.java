@@ -18,26 +18,34 @@ public class Temp {
     }
 
     public double getDay() {
-        return day;
+        return oneDecimalDouble(kelvinToCelsius(day));
     }
 
     public double getMin() {
-        return min;
+        return oneDecimalDouble(kelvinToCelsius(min));
     }
 
     public double getMax() {
-        return max;
+        return oneDecimalDouble(kelvinToCelsius(max));
     }
 
     public double getNight() {
-        return night;
+        return oneDecimalDouble(kelvinToCelsius(night));
     }
 
     public double getEve() {
-        return eve;
+        return oneDecimalDouble(kelvinToCelsius(eve));
     }
 
     public double getMorn() {
-        return morn;
+        return oneDecimalDouble(kelvinToCelsius(morn));
+    }
+
+    private double kelvinToCelsius(double degreesKelvin){
+        return degreesKelvin - 273.15;
+    }
+
+    private double oneDecimalDouble(double value){
+        return Math.round(value * 10) / 10.0;
     }
 }

@@ -36,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
     volatile boolean apiCallRunning = true;
 
     //variables
-    private ArrayList<String> weatherDataList;
+    private ArrayList<String> weatherDataList = new ArrayList<>();
+    private CompleteWeatherForecast completeWeatherForecast;
+    private ArrayList<String> imageUrls = new ArrayList<>();
 
     //Url variables
     private final static String WEATHER_API_BASE_URL = "https://api.openweathermap.org/";
     private final static String API_KEY = "7674b889ee154b8410ac0be7b9dcd5e9";
+    /*
     private final static String PARAM_APPID = "appid";
     //parameters for current day request
     private final static String PARAM_QUERY = "q";
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private final static String PARAM_LON = "lon";
     private final static String PARAM_LAT = "lat";
     private final static String PARAM_EXCLUDE = "exclude";
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Created");
 
+        //get all images from openweathermap for the different weather types
+        initImageUrls();
+
+        RetrofitAsyncTask retrofitAsyncTask = new RetrofitAsyncTask();
+        retrofitAsyncTask.execute();
+
+        /*
         //instantiate retrofit
         retrofit = new Retrofit.Builder()
                 .baseUrl(WEATHER_API_BASE_URL)
@@ -72,11 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Thread running");
                 Call<CompleteWeatherForecast> forecast = weatherService.getWeather(55.4, 10.39, "current,minutely,hourly", API_KEY);
                 try {
-                    final CompleteWeatherForecast forecastResponse = forecast.execute().body();
-                    Log.d(TAG, "run: daily size is " + forecastResponse.getDailies().size());
-                    for (int i = 0; i < forecastResponse.getDailies().size(); i++){
-                        Log.d(TAG, "run: daily weather = " + forecastResponse.getDailies().get(i).getWeather().get(0).getMain());
-                    }
+                    completeWeatherForecast = forecast.execute().body();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -84,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         });
         //start the thread
         webApiCallThread.start();
+
+        */
     }
 
     @Override
@@ -98,10 +107,78 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void initImageUrls(){
+        Log.d(TAG, "initImageBitmaps: Getting all weather images");
+
+        //clear sky
+        imageUrls.add("http://openweathermap.org/img/wn/01d@4x.png");
+        //few clouds
+        imageUrls.add("http://openweathermap.org/img/wn/02d@4x.png");
+        //scattered clouds
+        imageUrls.add("http://openweathermap.org/img/wn/03d@4x.png");
+        //broken clouds
+        imageUrls.add("http://openweathermap.org/img/wn/04d@4x.png");
+        //shower rain
+        imageUrls.add("http://openweathermap.org/img/wn/09d@4x.png");
+        //rain
+        imageUrls.add("http://openweathermap.org/img/wn/10d@4x.png");
+        //thunderstorm
+        imageUrls.add("http://openweathermap.org/img/wn/11d@4x.png");
+        //snow
+        imageUrls.add("http://openweathermap.org/img/wn/13d@4x.png");
+        //mist
+        imageUrls.add("http://openweathermap.org/img/wn/50d@4x.png");
+
+        //initiate recycler view
+        initRecyclerView();
+    }
+
     private void initRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.recyclerViewMain);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, weatherDataList, R.drawable.ic_launcher_foreground);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, completeWeatherForecast, imageUrls);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+
+    /* Async task class */
+    private class RetrofitAsyncTask extends AsyncTask<Void, Void, CompleteWeatherForecast>{
+
+        private static final String ASYNC_TAG = "RetrofitAsyncTask";
+
+        @Override
+        protected void onPreExecute() {
+            initRecyclerView();
+        }
+
+        @Override
+        protected CompleteWeatherForecast doInBackground(Void... voids) {
+            CompleteWeatherForecast weatherForecast = null;
+
+            //instantiate retrofit
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(WEATHER_API_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            //create retrofit instance of WeatherService
+            weatherService = retrofit.create(WeatherService.class);
+
+            Log.d(ASYNC_TAG, "Thread running");
+            Call<CompleteWeatherForecast> forecast = weatherService.getWeather(55.4, 10.39, "current,minutely,hourly", API_KEY);
+            try {
+                weatherForecast = forecast.execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return weatherForecast;
+        }
+
+        @Override
+        protected void onPostExecute(CompleteWeatherForecast weatherForecast) {
+            super.onPostExecute(weatherForecast);
+            completeWeatherForecast = weatherForecast;
+            initRecyclerView();
+        }
     }
 }

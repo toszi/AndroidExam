@@ -13,20 +13,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
+
+import sdu.android.examapp.ForecastEntites.CompleteWeatherForecast;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
-    private ArrayList<String> weatherDataList;
-    //private ArrayList<String> imageList;
-    private int resourceId;
     private Context context;
+    private CompleteWeatherForecast forecast;
+    private ArrayList<String> imageUrls;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> weatherDataList, int resourceId){ /*ArrayList<String> imageList) {*/
-        this.weatherDataList = weatherDataList;
-        this.resourceId = resourceId;
-        //this.imageList = imageList;
+    public RecyclerViewAdapter(Context context, CompleteWeatherForecast forecast, ArrayList<String> imageUrls) {
         this.context = context;
+        this.forecast = forecast;
+        this.imageUrls = imageUrls;
     }
 
     @NonNull
@@ -42,23 +44,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: called");
 
-        //get images from url
-        //Glide.with(context).asBitmap().load(imageList.get(position)).into(holder.imageView);
+        int imageId = 0;
 
-        holder.textView.setText(weatherDataList.get(position));
-        holder.imageView.setImageResource(resourceId);
+        //get images from url
+        Glide.with(context).asBitmap().load(imageUrls.get(imageId)).into(holder.imageView);
+
+        holder.textView.setText("Odense " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103");
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, weatherDataList.get(0), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Odense", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return weatherDataList.size();
+        return forecast == null ? 0 : forecast.getDailies().size();
     }
 
 

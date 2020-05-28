@@ -52,10 +52,6 @@
         "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cloudy.png.flat",
-        "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\drawable\\cloudy.png"
-    },
-    {
         "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },

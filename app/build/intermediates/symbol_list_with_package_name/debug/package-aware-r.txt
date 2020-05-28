@@ -689,7 +689,6 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
-drawable cloudy
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable notification_action_background
@@ -805,6 +804,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id forever
+id glide_custom_view_target_tag
 id gone
 id group_divider
 id groups
