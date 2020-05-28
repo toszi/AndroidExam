@@ -36,22 +36,13 @@ public class MainActivity extends AppCompatActivity {
     volatile boolean apiCallRunning = true;
 
     //variables
-    private ArrayList<String> weatherDataList = new ArrayList<>();
     private CompleteWeatherForecast completeWeatherForecast;
     private ArrayList<String> imageUrls = new ArrayList<>();
 
     //Url variables
     private final static String WEATHER_API_BASE_URL = "https://api.openweathermap.org/";
     private final static String API_KEY = "7674b889ee154b8410ac0be7b9dcd5e9";
-    /*
-    private final static String PARAM_APPID = "appid";
-    //parameters for current day request
-    private final static String PARAM_QUERY = "q";
-    //parameters for forecast request
-    private final static String PARAM_LON = "lon";
-    private final static String PARAM_LAT = "lat";
-    private final static String PARAM_EXCLUDE = "exclude";
-    */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,39 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Created");
 
-        //get all images from openweathermap for the different weather types
-        initImageUrls();
-
         RetrofitAsyncTask retrofitAsyncTask = new RetrofitAsyncTask();
         retrofitAsyncTask.execute();
 
-        /*
-        //instantiate retrofit
-        retrofit = new Retrofit.Builder()
-                .baseUrl(WEATHER_API_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        //create retrofit instance of WeatherService
-        weatherService = retrofit.create(WeatherService.class);
-
-        //create new thread
-        webApiCallThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Log.d(TAG, "Thread running");
-                Call<CompleteWeatherForecast> forecast = weatherService.getWeather(55.4, 10.39, "current,minutely,hourly", API_KEY);
-                try {
-                    completeWeatherForecast = forecast.execute().body();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        //start the thread
-        webApiCallThread.start();
-
-        */
     }
 
     @Override
@@ -111,23 +72,23 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "initImageBitmaps: Getting all weather images");
 
         //clear sky
-        imageUrls.add("http://openweathermap.org/img/wn/01d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/01d@4x.png");
         //few clouds
-        imageUrls.add("http://openweathermap.org/img/wn/02d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/02d@4x.png");
         //scattered clouds
-        imageUrls.add("http://openweathermap.org/img/wn/03d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/03d@4x.png");
         //broken clouds
-        imageUrls.add("http://openweathermap.org/img/wn/04d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/04d@4x.png");
         //shower rain
-        imageUrls.add("http://openweathermap.org/img/wn/09d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/09d@4x.png");
         //rain
-        imageUrls.add("http://openweathermap.org/img/wn/10d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/10d@4x.png");
         //thunderstorm
-        imageUrls.add("http://openweathermap.org/img/wn/11d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/11d@4x.png");
         //snow
-        imageUrls.add("http://openweathermap.org/img/wn/13d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/13d@4x.png");
         //mist
-        imageUrls.add("http://openweathermap.org/img/wn/50d@4x.png");
+        imageUrls.add("https://openweathermap.org/img/wn/50d@4x.png");
 
         //initiate recycler view
         initRecyclerView();
@@ -148,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+            //get all images from openweathermap for the different weather types
+            initImageUrls();
+
+            //initialize RecyclerView
             initRecyclerView();
         }
 
@@ -178,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(CompleteWeatherForecast weatherForecast) {
             super.onPostExecute(weatherForecast);
             completeWeatherForecast = weatherForecast;
-            initRecyclerView();
+            initImageUrls();
         }
     }
 }

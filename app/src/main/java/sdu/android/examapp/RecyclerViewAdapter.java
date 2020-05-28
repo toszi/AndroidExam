@@ -24,11 +24,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context context;
     private CompleteWeatherForecast forecast;
     private ArrayList<String> imageUrls;
+    private int imageId;
 
     public RecyclerViewAdapter(Context context, CompleteWeatherForecast forecast, ArrayList<String> imageUrls) {
         this.context = context;
         this.forecast = forecast;
         this.imageUrls = imageUrls;
+        imageId = 0;
     }
 
     @NonNull
@@ -44,17 +46,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: called");
 
-        int imageId = 0;
-
         //get images from url
-        Glide.with(context).asBitmap().load(imageUrls.get(imageId)).into(holder.imageView);
+        Glide.with(context).asBitmap().load(imageUrls.get(findAppropriateImage(position))).into(holder.imageView);
 
         holder.textView.setText("Odense " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103");
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Odense", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, forecast.getDailies().get(position).getWeather().get(0).getMain() + ": " + forecast.getDailies().get(position).getWeather().get(0).getDescription(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -62,6 +62,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return forecast == null ? 0 : forecast.getDailies().size();
+    }
+
+    private int findAppropriateImage(int position){
+        switch(forecast.getDailies().get(position).getWeather().get(0).getIcon()){
+            case "01d":
+                return 0;
+            case "02d":
+                return 1;
+            case "03d":
+                return 2;
+            case "04d":
+                return 3;
+            case "09d":
+                return 4;
+            case "10d":
+                return 5;
+            case "11d":
+                return 6;
+            case "13d":
+                return 7;
+            default:
+                return 8;
+        }
     }
 
 
