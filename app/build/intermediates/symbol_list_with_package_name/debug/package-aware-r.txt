@@ -804,6 +804,7 @@ id end
 id end_padder
 id expand_activities_button
 id expanded_menu
+id expectedRain
 id feelsLikeAndUVTextView
 id fill
 id fill_horizontal
@@ -1016,6 +1017,7 @@ string hello_blank_fragment
 string no_day_found
 string no_degrees_found
 string no_description_of_the_day
+string no_information_of_rain
 string no_min_max_degree_found
 string no_moisture_found
 string no_weather_data

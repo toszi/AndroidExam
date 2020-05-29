@@ -28,7 +28,10 @@ public class WeatherDisplayActivity extends AppCompatActivity {
         String imageUrl = intent.getStringExtra("imageUrl");
         position = intent.getExtras().getInt("clickedPosition");
 
-        //headline
+        //Back button on title
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Headline
         TextView dayOfTheWeekTextView = findViewById(R.id.day_headline);
         dayOfTheWeekTextView.setText(intent.getStringExtra("dayOfTheWeek"));
 
@@ -39,12 +42,12 @@ public class WeatherDisplayActivity extends AppCompatActivity {
         //Degrees beside the image
         TextView degreesTextView = findViewById(R.id.textview_degrees);
         String degrees = String.valueOf(forecast.getDailies().get(position).getTemp().getDay());
-        degreesTextView.setText(degrees + " \u2103");
+        degreesTextView.setText(degrees + "\u2103");
 
         //Min / max degrees
         TextView minMaxDegrees = findViewById(R.id.max_min_degrees);
-        minMaxDegrees.setText("Highest: " + forecast.getDailies().get(position).getTemp().getMax()
-                + " / Lowest: " + forecast.getDailies().get(position).getTemp().getMin());
+        minMaxDegrees.setText("Highest: " + forecast.getDailies().get(position).getTemp().getMax() + "\u2103"
+                + " / Lowest: " + forecast.getDailies().get(position).getTemp().getMin() + "\u2103");
 
         //Weather description
         TextView weatherDescription = findViewById(R.id.weather_description);
@@ -57,7 +60,7 @@ public class WeatherDisplayActivity extends AppCompatActivity {
 
         //Feels like and UV index
         TextView feelsLikeAndUVITextView = findViewById(R.id.feelsLikeAndUVTextView);
-        feelsLikeAndUVITextView.setText("Air feels like: " + forecast.getDailies().get(position).getFeels_like().getDay() + "\n"
+        feelsLikeAndUVITextView.setText("Feels like: " + forecast.getDailies().get(position).getFeels_like().getDay() + "\u2103" + "\n"
         + "UV Index: " + forecast.getDailies().get(position).getUvi());
 
         //Wind speed
@@ -65,6 +68,11 @@ public class WeatherDisplayActivity extends AppCompatActivity {
         windSpeedTextView.setText("Windspeed\n"+
                 forecast.getDailies().get(position).getWind_speed() + "m/s \n\n"
         + "Wind direction \n" + calculateDirectionOfWind(forecast.getDailies().get(position).getWind_deg()));
+
+        //Expected rain
+        TextView expectedRainTextView = findViewById(R.id.expectedRain);
+        expectedRainTextView.setText("Expected amount of rain: \n" +
+                forecast.getDailies().get(position).getRain() + " mm");
     }
 
     private String calculateDirectionOfWind(int degrees){

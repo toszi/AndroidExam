@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     Retrofit retrofit;
     WeatherService weatherService;
     Thread webApiCallThread;
-    volatile boolean apiCallRunning = true;
 
     //variables
     private CompleteWeatherForecast completeWeatherForecast;
@@ -61,14 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        apiCallRunning = false;
         super.onDestroy();
-        try{
-            webApiCallThread.join();
-            Log.d(TAG, "onDestroy: Thread stopped");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     private void initImageUrls(){
