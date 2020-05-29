@@ -132,13 +132,14 @@ public class MainActivity extends AppCompatActivity {
             //create retrofit instance of WeatherService
             weatherService = retrofit.create(WeatherService.class);
 
-            Log.d(ASYNC_TAG, "Thread running");
-            Call<CompleteWeatherForecast> forecast = weatherService.getWeather(55.4, 10.39, "current,minutely,hourly", API_KEY);
+            Log.d(ASYNC_TAG, "Retrieving weather data");
+            Call<CompleteWeatherForecast> forecast = weatherService.getWeather(55.403756, 10.40270, "current,minutely,hourly", API_KEY);
             try {
                 weatherForecast = forecast.execute().body();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Log.d(ASYNC_TAG, "Weather data retrieved and available");
             return weatherForecast;
         }
 

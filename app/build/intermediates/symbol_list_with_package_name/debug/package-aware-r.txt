@@ -804,6 +804,7 @@ id end
 id end_padder
 id expand_activities_button
 id expanded_menu
+id feelsLikeAndUVTextView
 id fill
 id fill_horizontal
 id fill_vertical
@@ -814,6 +815,7 @@ id group_divider
 id groups
 id home
 id homeAsUp
+id humidityTextView
 id icon
 id icon_group
 id ifRoom
@@ -828,6 +830,7 @@ id line1
 id line3
 id listMode
 id list_item
+id max_min_degrees
 id media_actions
 id message
 id middle
@@ -904,10 +907,13 @@ id title_template
 id top
 id topPanel
 id unchecked
+id underImageAndDegreesSeparator
 id uniform
 id up
 id useLogo
 id weather_data
+id weather_description
+id windSpeed
 id withText
 id wrap
 id wrap_content
@@ -1009,7 +1015,11 @@ string degrees_celsius
 string hello_blank_fragment
 string no_day_found
 string no_degrees_found
+string no_description_of_the_day
+string no_min_max_degree_found
+string no_moisture_found
 string no_weather_data
+string no_wind_information
 string search_menu_title
 string status_bar_notification_info_overflow
 style AlertDialog_AppCompat

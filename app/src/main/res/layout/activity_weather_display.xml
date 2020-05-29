@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/no_day_found"
         android:textSize="50sp"
+        android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,13 +50,92 @@
                 android:gravity="center"
                 android:text="@string/no_degrees_found"
                 android:textSize="40sp"
+                android:textColor="#000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/display_image"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent="0.5" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <View
+                android:id="@+id/underImageAndDegreesSeparator"
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:background="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/display_image" />
+
+            <TextView
+                android:id="@+id/max_min_degrees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_min_max_degree_found"
+                android:textSize="15sp"
+                android:textColor="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/underImageAndDegreesSeparator" />
+
+            <TextView
+                android:id="@+id/weather_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_description_of_the_day"
+                android:textSize="20sp"
+                android:textColor="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/max_min_degrees" />
+
+
+            <TextView
+                android:id="@+id/humidityTextView"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/no_moisture_found"
+                android:textSize="40sp"
+                android:textColor="#000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weather_description"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/feelsLikeAndUVTextView"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/no_moisture_found"
+                android:textSize="20sp"
+                android:textColor="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weather_description"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/windSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_wind_information"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/feelsLikeAndUVTextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

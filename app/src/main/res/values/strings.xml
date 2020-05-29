@@ -8,4 +8,8 @@
     <string name="degrees_celsius">\u2103</string>
     <string name="city">City</string>
     <string name="no_day_found">No day found</string>
+    <string name="no_description_of_the_day">No description of the day</string>
+    <string name="no_min_max_degree_found">No min / max degree found</string>
+    <string name="no_moisture_found">No moisture found</string>
+    <string name="no_wind_information">No wind information</string>
 </resources>

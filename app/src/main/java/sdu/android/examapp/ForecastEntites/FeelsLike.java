@@ -42,19 +42,27 @@ public class FeelsLike implements Parcelable {
     }
 
     public double getDay() {
-        return day;
+        return oneDecimalDouble(kelvinToCelsius(day));
     }
 
     public double getNight() {
-        return night;
+        return oneDecimalDouble(kelvinToCelsius(night));
     }
 
     public double getEve() {
-        return eve;
+        return oneDecimalDouble(kelvinToCelsius(eve));
     }
 
     public double getMorn() {
-        return morn;
+        return oneDecimalDouble(kelvinToCelsius(morn));
+    }
+
+    private double kelvinToCelsius(double degreesKelvin){
+        return degreesKelvin - 273.15;
+    }
+
+    private double oneDecimalDouble(double value){
+        return Math.round(value * 10) / 10.0;
     }
 
 }
