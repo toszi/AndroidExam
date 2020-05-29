@@ -58,8 +58,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Toast.makeText(context, forecast.getDailies().get(position).getWeather().get(0).getMain() + ": " + forecast.getDailies().get(position).getWeather().get(0).getDescription(), Toast.LENGTH_SHORT).show();
 
                 //make intend here for new activity
-                Intent intent = new Intent(context, WeatherInformationDisplay.class);
-                intent.putExtra("imageUrl", imageUrls.get(position));
+                Intent intent = new Intent(context, WeatherDisplayActivity.class);
+                intent.putExtra("imageUrl", imageUrls.get(findAppropriateImage(position)));
+                intent.putExtra("CompleteWeatherForecast", forecast);
+                intent.putExtra("clickedPosition", position);
+                context.startActivity(intent);
             }
         });
     }

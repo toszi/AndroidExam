@@ -21,6 +21,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="sdu.android.examapp.WeatherDisplayActivity" />
         <activity android:name="sdu.android.examapp.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

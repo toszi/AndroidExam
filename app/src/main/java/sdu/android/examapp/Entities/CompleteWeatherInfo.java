@@ -17,24 +17,6 @@ public class CompleteWeatherInfo {
     private String name;
     private int cod;
 
-    public CompleteWeatherInfo(Coord coord, ArrayList<Weather> weather, String base,
-                               Main main, int visibility, Wind wind, Clouds clouds, int dt,
-                               Sys sys, int timezone, int id, String name, int cod) {
-        this.coord = coord;
-        this.weather = weather;
-        this.base = base;
-        this.main = main;
-        this.visibility = visibility;
-        this.wind = wind;
-        this.clouds = clouds;
-        this.dt = dt;
-        this.sys = sys;
-        this.timezone = timezone;
-        this.id = id;
-        this.name = name;
-        this.cod = cod;
-    }
-
     public Coord getCoord() {
         return coord;
     }

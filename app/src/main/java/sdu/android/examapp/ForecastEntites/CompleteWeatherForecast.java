@@ -3,6 +3,7 @@ package sdu.android.examapp.ForecastEntites;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CompleteWeatherForecast implements Parcelable {
@@ -17,7 +18,8 @@ public class CompleteWeatherForecast implements Parcelable {
         lon = in.readDouble();
         timezone = in.readString();
         timezone_offset = in.readInt();
-        in.readTypedList(daily, Daily.CREATOR);
+        daily = new ArrayList<>();
+        in.readList(daily, Daily.class.getClassLoader());
     }
 
     public static final Creator<CompleteWeatherForecast> CREATOR = new Creator<CompleteWeatherForecast>() {

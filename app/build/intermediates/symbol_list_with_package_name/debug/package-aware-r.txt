@@ -783,6 +783,7 @@ id chains
 id checkbox
 id checked
 id chronometer
+id cityTextView
 id clip_horizontal
 id clip_vertical
 id collapseActionView
@@ -796,6 +797,7 @@ id dialog_button
 id dimensions
 id direct
 id disableHome
+id display_image
 id edit_query
 id end
 id end_padder
@@ -893,6 +895,7 @@ id text
 id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
+id textview_degrees
 id time
 id title
 id titleDividerNoCustom
@@ -948,6 +951,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout activity_weather_display
 layout custom_dialog
 layout fragment_weather_display
 layout notification_action
@@ -999,7 +1003,10 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string app_name
+string city
+string degrees_celsius
 string hello_blank_fragment
+string no_degrees_found
 string no_weather_data
 string search_menu_title
 string status_bar_notification_info_overflow

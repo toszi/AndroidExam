@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         RetrofitAsyncTask retrofitAsyncTask = new RetrofitAsyncTask();
         retrofitAsyncTask.execute();
 
+        TextView cityTextView = findViewById(R.id.cityTextView);
+        String city = "Odense";
+        cityTextView.setText(city);
     }
 
     @Override
@@ -112,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             initImageUrls();
 
             //initialize RecyclerView
-            initRecyclerView();
+            //initRecyclerView();
         }
 
         @Override

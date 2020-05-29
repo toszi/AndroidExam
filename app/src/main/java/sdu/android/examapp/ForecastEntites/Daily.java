@@ -35,7 +35,7 @@ public class Daily implements Parcelable {
         wind_deg = in.readInt();
         /* weather */
         weather = new ArrayList<>();
-        in.readTypedList(weather, Weather.CREATOR);
+        in.readList(weather, Weather.class.getClassLoader());
         /*         */
         clouds = in.readInt();
         rain = in.readDouble();

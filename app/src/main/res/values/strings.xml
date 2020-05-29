@@ -4,4 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_weather_data">No weather data found</string>
+    <string name="no_degrees_found">No degrees found</string>
+    <string name="degrees_celsius">\u2103</string>
+    <string name="city">City</string>
 </resources>

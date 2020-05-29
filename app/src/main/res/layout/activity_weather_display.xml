@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeatherDisplayActivity"
+    android:background="@drawable/fragment_background">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_weight="0.5"
+        android:id="@+id/display_image"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_weight="0.5"
+        android:id="@+id/textview_degrees"
+        android:text="@string/no_degrees_found"
+        android:textSize="40sp"
+        android:gravity="center"
+        />
+
+</LinearLayout>
