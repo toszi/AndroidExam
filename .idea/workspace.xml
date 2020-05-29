@@ -49,15 +49,18 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\SDU\Android\Exam\AndroidExam\app\src\main\res\drawable-v24" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
+    <key name="android.template.packageName">
       <recent name="sdu.android.examapp" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\SDU\Android\Exam\AndroidExam\app\src\main\res\drawable" />
       <recent name="F:\SDU\Android\Exam\AndroidExam\app\src\main\java\sdu\android\examapp\Entities" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="sdu.android.examapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\SDU\Android\Exam\AndroidExam\app\src\main\res\drawable-v24" />
     </key>
   </component>
   <component name="RunDashboard">

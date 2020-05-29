@@ -1,8 +1,12 @@
 package sdu.android.examapp.ForecastEntites;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Daily {
+public class Daily implements Parcelable {
     private int dt;
     private int sunrise;
     private int sunset;
@@ -18,24 +22,60 @@ public class Daily {
     private double rain;
     private double uvi;
 
-    public Daily(int dt, int sunrise, int sunset, Temp temp, FeelsLike feels_like,
-                 int pressure, int humidity, double dew_point, double wind_speed, int wind_deg,
-                 List<Weather> weather, int clouds, double rain, double uvi) {
-        this.dt = dt;
-        this.sunrise = sunrise;
-        this.sunset = sunset;
-        this.temp = temp;
-        this.feels_like = feels_like;
-        this.pressure = pressure;
-        this.humidity = humidity;
-        this.dew_point = dew_point;
-        this.wind_speed = wind_speed;
-        this.wind_deg = wind_deg;
-        this.weather = weather;
-        this.clouds = clouds;
-        this.rain = rain;
-        this.uvi = uvi;
+    protected Daily(Parcel in) {
+        dt = in.readInt();
+        sunrise = in.readInt();
+        sunset = in.readInt();
+        temp = (Temp) in.readValue(Temp.class.getClassLoader());
+        feels_like = (FeelsLike) in.readValue(FeelsLike.class.getClassLoader());
+        pressure = in.readInt();
+        humidity = in.readInt();
+        dew_point = in.readDouble();
+        wind_speed = in.readDouble();
+        wind_deg = in.readInt();
+        /* weather */
+        weather = new ArrayList<>();
+        in.readTypedList(weather, Weather.CREATOR);
+        /*         */
+        clouds = in.readInt();
+        rain = in.readDouble();
+        uvi = in.readDouble();
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(dt);
+        dest.writeInt(sunrise);
+        dest.writeInt(sunset);
+        dest.writeValue(temp);
+        dest.writeValue(feels_like);
+        dest.writeInt(pressure);
+        dest.writeInt(humidity);
+        dest.writeDouble(dew_point);
+        dest.writeDouble(wind_speed);
+        dest.writeInt(wind_deg);
+        dest.writeList(weather);
+        dest.writeInt(clouds);
+        dest.writeDouble(rain);
+        dest.writeDouble(uvi);
+    }
+
+    public static final Parcelable.Creator<Daily> CREATOR = new Parcelable.Creator<Daily>() {
+        @Override
+        public Daily createFromParcel(Parcel in) {
+            return new Daily(in);
+        }
+
+        @Override
+        public Daily[] newArray(int size) {
+            return new Daily[size];
+        }
+    };
 
     public int getDt() {
         return dt;
@@ -92,4 +132,6 @@ public class Daily {
     public double getUvi() {
         return uvi;
     }
+
+
 }

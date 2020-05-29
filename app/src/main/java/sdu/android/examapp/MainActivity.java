@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private final static String WEATHER_API_BASE_URL = "https://api.openweathermap.org/";
     private final static String API_KEY = "7674b889ee154b8410ac0be7b9dcd5e9";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

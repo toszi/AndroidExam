@@ -1,6 +1,9 @@
 package sdu.android.examapp.ForecastEntites;
 
-public class Temp {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Temp implements Parcelable {
     private double day;
     private double min;
     private double max;
@@ -8,13 +11,40 @@ public class Temp {
     private double eve;
     private double morn;
 
-    public Temp(double day, double min, double max, double night, double eve, double morn) {
-        this.day = day;
-        this.min = min;
-        this.max = max;
-        this.night = night;
-        this.eve = eve;
-        this.morn = morn;
+    protected Temp(Parcel in) {
+        day = in.readDouble();
+        min = in.readDouble();
+        max = in.readDouble();
+        night = in.readDouble();
+        eve = in.readDouble();
+        morn = in.readDouble();
+    }
+
+    public static final Creator<Temp> CREATOR = new Creator<Temp>() {
+        @Override
+        public Temp createFromParcel(Parcel in) {
+            return new Temp(in);
+        }
+
+        @Override
+        public Temp[] newArray(int size) {
+            return new Temp[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(day);
+        dest.writeDouble(min);
+        dest.writeDouble(max);
+        dest.writeDouble(night);
+        dest.writeDouble(eve);
+        dest.writeDouble(morn);
     }
 
     public double getDay() {
@@ -48,4 +78,5 @@ public class Temp {
     private double oneDecimalDouble(double value){
         return Math.round(value * 10) / 10.0;
     }
+
 }

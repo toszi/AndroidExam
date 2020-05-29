@@ -1,15 +1,15 @@
 [
     {
-        "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
         "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_weather_display.xml.flat",
         "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\layout\\fragment_weather_display.xml"
     },
     {
-        "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+        "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
         "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
@@ -58,10 +58,6 @@
     {
         "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_celtic_border.jpg.flat",
-        "source": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\src\\main\\res\\drawable-v24\\celtic_border.jpg"
     },
     {
         "merged": "F:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",

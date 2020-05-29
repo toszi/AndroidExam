@@ -1,6 +1,7 @@
 package sdu.android.examapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, forecast.getDailies().get(position).getWeather().get(0).getMain() + ": " + forecast.getDailies().get(position).getWeather().get(0).getDescription(), Toast.LENGTH_SHORT).show();
+
+                //make intend here for new activity
+                Intent intent = new Intent(context, WeatherInformationDisplay.class);
+                intent.putExtra("imageUrl", imageUrls.get(position));
             }
         });
     }

@@ -1,20 +1,49 @@
 package sdu.android.examapp.ForecastEntites;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class CompleteWeatherForecast {
+public class CompleteWeatherForecast implements Parcelable {
     private double lat;
     private double lon;
     private String timezone;
     private int timezone_offset;
     private List<Daily> daily;
 
-    public CompleteWeatherForecast(double lat, double lon, String timezone, int timezone_offset, List<Daily> daily) {
-        this.lat = lat;
-        this.lon = lon;
-        this.timezone = timezone;
-        this.timezone_offset = timezone_offset;
-        this.daily = daily;
+    protected CompleteWeatherForecast(Parcel in) {
+        lat = in.readDouble();
+        lon = in.readDouble();
+        timezone = in.readString();
+        timezone_offset = in.readInt();
+        in.readTypedList(daily, Daily.CREATOR);
+    }
+
+    public static final Creator<CompleteWeatherForecast> CREATOR = new Creator<CompleteWeatherForecast>() {
+        @Override
+        public CompleteWeatherForecast createFromParcel(Parcel in) {
+            return new CompleteWeatherForecast(in);
+        }
+
+        @Override
+        public CompleteWeatherForecast[] newArray(int size) {
+            return new CompleteWeatherForecast[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(lat);
+        dest.writeDouble(lon);
+        dest.writeString(timezone);
+        dest.writeInt(timezone_offset);
+        dest.writeList(daily);
     }
 
     public void setLat(double lat) {
@@ -56,4 +85,8 @@ public class CompleteWeatherForecast {
     public List<Daily> getDailies() {
         return daily;
     }
+
+
+
+
 }
