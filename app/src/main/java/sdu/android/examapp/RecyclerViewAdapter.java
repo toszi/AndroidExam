@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import sdu.android.examapp.ForecastEntites.CompleteWeatherForecast;
 
@@ -25,13 +26,40 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context context;
     private CompleteWeatherForecast forecast;
     private ArrayList<String> imageUrls;
-    private int imageId;
 
     public RecyclerViewAdapter(Context context, CompleteWeatherForecast forecast, ArrayList<String> imageUrls) {
         this.context = context;
         this.forecast = forecast;
         this.imageUrls = imageUrls;
-        imageId = 0;
+    }
+
+    private String getDay(int day){
+        switch (day-1){
+            case Calendar.MONDAY:
+                return "Monday";
+            case Calendar.TUESDAY:
+                return "Tuesday";
+            case Calendar.WEDNESDAY:
+                return "Wednesday";
+            case Calendar.THURSDAY:
+                return "Thursday";
+            case Calendar.FRIDAY:
+                return "Friday";
+            case Calendar.SATURDAY:
+                return "Saturday";
+            case Calendar.SUNDAY:
+                return "Sunday";
+            default:
+                return "Not a day";
+        }
+    }
+
+    private int properWeekDay(int position){
+        int day = Calendar.DAY_OF_WEEK + position;
+        if(day > 8){
+            day = position;
+        }
+        return day;
     }
 
     @NonNull
@@ -50,18 +78,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         //get images from url
         Glide.with(context).asBitmap().load(imageUrls.get(findAppropriateImage(position))).into(holder.imageView);
 
-        holder.textView.setText("Odense " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103");
-
+        holder.textView.setText(getDay(properWeekDay(position)) + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
+                forecast.getDailies().get(position).getWeather().get(0).getDescription());
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, forecast.getDailies().get(position).getWeather().get(0).getMain() + ": " + forecast.getDailies().get(position).getWeather().get(0).getDescription(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, forecast.getDailies().get(position).getWeather().get(0).getMain() + ": " + forecast.getDailies().get(position).getWeather().get(0).getDescription(), Toast.LENGTH_SHORT).show();
 
                 //make intend here for new activity
                 Intent intent = new Intent(context, WeatherDisplayActivity.class);
                 intent.putExtra("imageUrl", imageUrls.get(findAppropriateImage(position)));
                 intent.putExtra("CompleteWeatherForecast", forecast);
                 intent.putExtra("clickedPosition", position);
+                intent.putExtra("dayOfTheWeek", getDay(properWeekDay(position)));
                 context.startActivity(intent);
             }
         });

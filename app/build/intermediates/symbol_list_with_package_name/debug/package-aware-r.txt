@@ -791,6 +791,7 @@ id content
 id contentPanel
 id custom
 id customPanel
+id day_headline
 id decor_content_parent
 id default_activity_button
 id dialog_button
@@ -1006,6 +1007,7 @@ string app_name
 string city
 string degrees_celsius
 string hello_blank_fragment
+string no_day_found
 string no_degrees_found
 string no_weather_data
 string search_menu_title

@@ -1,4 +1,4 @@
-#Fri May 29 11:47:52 CEST 2020
+#Fri May 29 12:47:09 CEST 2020
 base.0=F\:\\SDU\\Android\\Exam\\AndroidExam\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

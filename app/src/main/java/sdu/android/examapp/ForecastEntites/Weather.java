@@ -50,7 +50,8 @@ public class Weather implements Parcelable {
     }
 
     public String getDescription() {
-        return description;
+        //Makes the first letter capital
+        return description.substring(0, 1).toUpperCase() + description.substring(1).toLowerCase();
     }
 
     public String getIcon() {

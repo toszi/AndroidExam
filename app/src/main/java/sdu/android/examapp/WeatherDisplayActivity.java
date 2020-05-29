@@ -27,6 +27,9 @@ public class WeatherDisplayActivity extends AppCompatActivity {
         String degrees = String.valueOf(forecast.getDailies().get(position).getTemp().getDay());
         degreesTextView.setText(degrees + " \u2103");
 
+        TextView dayOfTheWeekTextView = findViewById(R.id.day_headline);
+        dayOfTheWeekTextView.setText(intent.getStringExtra("dayOfTheWeek"));
+
         ImageView imageView = findViewById(R.id.display_image);
         Glide.with(this).asBitmap().load(imageUrl).into(imageView);
     }
