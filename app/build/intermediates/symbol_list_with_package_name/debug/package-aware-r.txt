@@ -1024,6 +1024,7 @@ string no_weather_data
 string no_wind_information
 string search_menu_title
 string status_bar_notification_info_overflow
+string weather_image_from_online
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

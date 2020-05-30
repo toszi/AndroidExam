@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import sdu.android.examapp.ForecastEntites.CompleteWeatherForecast;
 
@@ -33,35 +34,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.imageUrls = imageUrls;
     }
 
-    private String getDay(int day){
-        switch (day-1){
-            case Calendar.MONDAY:
-                return "Monday";
-            case Calendar.TUESDAY:
-                return "Tuesday";
-            case Calendar.WEDNESDAY:
-                return "Wednesday";
-            case Calendar.THURSDAY:
-                return "Thursday";
-            case Calendar.FRIDAY:
-                return "Friday";
-            case Calendar.SATURDAY:
-                return "Saturday";
-            case Calendar.SUNDAY:
-                return "Sunday";
-            default:
-                return "Not a day";
-        }
-    }
-
-    private int properWeekDay(int position){
-        int day = Calendar.DAY_OF_WEEK + position;
-        if(day > 8){
-            day = position;
-        }
-        return day;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -71,6 +43,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return holder;
     }
 
+    public String [] getWeekDay()
+    {
+
+        Calendar now = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("EEEE");
+        String [] days = new String[7];
+        int delta = -now.get(GregorianCalendar.DAY_OF_WEEK);
+        now.add(Calendar.DAY_OF_MONTH , delta);
+        for (int i = 0; i < 7; i++)
+        {
+            days [i] = format.format(now.getTime());
+            now.add(Calendar.DAY_OF_MONTH , 1);
+        }
+        return days;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: called");
@@ -78,19 +66,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         //get images from url
         Glide.with(context).asBitmap().load(imageUrls.get(findAppropriateImage(position))).into(holder.imageView);
 
-        holder.textView.setText(getDay(properWeekDay(position)) + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
-                forecast.getDailies().get(position).getWeather().get(0).getDescription());
+        if(position < 7){
+            holder.textView.setText(getWeekDay()[position] + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
+                    forecast.getDailies().get(position).getWeather().get(0).getDescription());
+        }else{
+            holder.textView.setText(getWeekDay()[0] + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
+                    forecast.getDailies().get(position).getWeather().get(0).getDescription());
+        }
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context, forecast.getDailies().get(position).getWeather().get(0).getMain() + ": " + forecast.getDailies().get(position).getWeather().get(0).getDescription(), Toast.LENGTH_SHORT).show();
-
                 //make intend here for new activity
                 Intent intent = new Intent(context, WeatherDisplayActivity.class);
                 intent.putExtra("imageUrl", imageUrls.get(findAppropriateImage(position)));
                 intent.putExtra("CompleteWeatherForecast", forecast);
                 intent.putExtra("clickedPosition", position);
-                intent.putExtra("dayOfTheWeek", getDay(properWeekDay(position)));
+                if(position < 7){
+                    intent.putExtra("dayOfTheWeek", getWeekDay()[position]);
+                }else{
+                    intent.putExtra("dayOfTheWeek", getWeekDay()[0]);
+                }
                 context.startActivity(intent);
             }
         });
