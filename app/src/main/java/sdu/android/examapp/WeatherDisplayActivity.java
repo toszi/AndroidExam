@@ -15,18 +15,15 @@ import sdu.android.examapp.ForecastEntites.CompleteWeatherForecast;
 
 public class WeatherDisplayActivity extends AppCompatActivity {
 
-    private CompleteWeatherForecast forecast;
-    private int position;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_display);
 
         Intent intent = getIntent();
-        forecast = intent.getParcelableExtra("CompleteWeatherForecast");
+        CompleteWeatherForecast forecast = intent.getParcelableExtra("CompleteWeatherForecast");
         String imageUrl = intent.getStringExtra("imageUrl");
-        position = intent.getExtras().getInt("clickedPosition");
+        int position = intent.getExtras().getInt("clickedPosition");
 
         //Back button on title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
