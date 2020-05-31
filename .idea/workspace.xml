@@ -18,6 +18,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="oncreate" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="myapp" />
   </component>
   <component name="ChangeListManager">
@@ -27,7 +28,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="LHS7N18C04009447" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -59,24 +60,24 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="LHS7N18C04009447" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-29T13:24:42.139Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-31T12:30:35.326Z" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\SDU\Android\Exam\AndroidExam\app\src\main\res\drawable-v24" />
+    </key>
     <key name="android.template.packageName">
+      <recent name="sdu.android.examapp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="sdu.android.examapp" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\SDU\Android\Exam\AndroidExam\app\src\main\res\drawable" />
       <recent name="F:\SDU\Android\Exam\AndroidExam\app\src\main\java\sdu\android\examapp\Entities" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="sdu.android.examapp" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\SDU\Android\Exam\AndroidExam\app\src\main\res\drawable-v24" />
     </key>
   </component>
   <component name="RunManager">
@@ -164,5 +165,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1590926637675">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1590926637675" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590928018147">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1590928018147" />
   </component>
 </project>

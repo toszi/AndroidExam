@@ -45,7 +45,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public String [] getWeekDay()
     {
-
         Calendar now = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("EEEE");
         String [] days = new String[7];
@@ -67,10 +66,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Glide.with(context).asBitmap().load(imageUrls.get(findAppropriateImage(position))).into(holder.imageView);
 
         if(position < 7){
-            holder.textView.setText(getWeekDay()[position] + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
+            holder.textView.setText(getWeekDay()[position].substring(0, 1).toUpperCase() + getWeekDay()[position].substring(1).toLowerCase() + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
                     forecast.getDailies().get(position).getWeather().get(0).getDescription());
+
         }else{
-            holder.textView.setText(getWeekDay()[0] + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
+            holder.textView.setText(getWeekDay()[0].substring(0, 1).toUpperCase() + getWeekDay()[0].substring(1).toLowerCase() + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
                     forecast.getDailies().get(position).getWeather().get(0).getDescription());
         }
 
@@ -83,9 +83,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("CompleteWeatherForecast", forecast);
                 intent.putExtra("clickedPosition", position);
                 if(position < 7){
-                    intent.putExtra("dayOfTheWeek", getWeekDay()[position]);
+                    intent.putExtra("dayOfTheWeek", getWeekDay()[position].substring(0, 1).toUpperCase() + getWeekDay()[position].substring(1).toLowerCase());
                 }else{
-                    intent.putExtra("dayOfTheWeek", getWeekDay()[0]);
+                    intent.putExtra("dayOfTheWeek", getWeekDay()[0].substring(0, 1).toUpperCase() + getWeekDay()[0].substring(1).toLowerCase());
                 }
                 context.startActivity(intent);
             }

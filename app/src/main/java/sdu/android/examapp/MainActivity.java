@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Weather data variables
     Retrofit retrofit;
+    RetrofitAsyncTask retrofitAsyncTask;
     WeatherService weatherService;
-    Thread webApiCallThread;
 
     //variables
     private CompleteWeatherForecast completeWeatherForecast;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Created");
 
-        RetrofitAsyncTask retrofitAsyncTask = new RetrofitAsyncTask();
+        retrofitAsyncTask = new RetrofitAsyncTask();
         retrofitAsyncTask.execute();
 
         TextView cityTextView = findViewById(R.id.cityTextView);
@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        Log.d(TAG, "onDestroy: Called");
+        retrofitAsyncTask.cancel(true);
         super.onDestroy();
     }
 
