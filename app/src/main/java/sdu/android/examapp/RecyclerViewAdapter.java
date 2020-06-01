@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import sdu.android.examapp.ForecastEntites.CompleteWeatherForecast;
@@ -43,19 +44,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return holder;
     }
 
-    public String [] getWeekDay()
-    {
-        Calendar now = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("EEEE");
-        String [] days = new String[7];
-        int delta = -now.get(GregorianCalendar.DAY_OF_WEEK);
-        now.add(Calendar.DAY_OF_MONTH , delta);
-        for (int i = 0; i < 7; i++)
-        {
-            days [i] = format.format(now.getTime());
-            now.add(Calendar.DAY_OF_MONTH , 1);
+    private String getDays(int position){
+        Calendar rightNow = Calendar.getInstance();
+        Log.d(TAG, "getDays: " + rightNow.get(Calendar.DAY_OF_WEEK) + " position: " + position + " results in = " + (rightNow.get(Calendar.DAY_OF_WEEK) + position - 1));
+        switch((rightNow.get(Calendar.DAY_OF_WEEK) - 1) + position){
+            case 1:
+                return "Monday";
+            case 2:
+                return "Tuesday";
+            case 3:
+                return "Wednesday";
+            case 4:
+                return "Thursday";
+            case 5:
+                return "Friday";
+            case 6:
+                return "Saturday";
+            case 7:
+                return "Sunday";
+            default:
+                return "Not a day";
         }
-        return days;
     }
 
     @Override
@@ -66,11 +75,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Glide.with(context).asBitmap().load(imageUrls.get(findAppropriateImage(position))).into(holder.imageView);
 
         if(position < 7){
-            holder.textView.setText(getWeekDay()[position].substring(0, 1).toUpperCase() + getWeekDay()[position].substring(1).toLowerCase() + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
+            holder.textView.setText(getDays(position) + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
                     forecast.getDailies().get(position).getWeather().get(0).getDescription());
-
         }else{
-            holder.textView.setText(getWeekDay()[0].substring(0, 1).toUpperCase() + getWeekDay()[0].substring(1).toLowerCase() + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
+            holder.textView.setText(getDays(0) + ": " + forecast.getDailies().get(position).getTemp().getDay() + " \u2103 \n" +
                     forecast.getDailies().get(position).getWeather().get(0).getDescription());
         }
 
@@ -83,9 +91,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("CompleteWeatherForecast", forecast);
                 intent.putExtra("clickedPosition", position);
                 if(position < 7){
-                    intent.putExtra("dayOfTheWeek", getWeekDay()[position].substring(0, 1).toUpperCase() + getWeekDay()[position].substring(1).toLowerCase());
+                    intent.putExtra("dayOfTheWeek", getDays(position));
                 }else{
-                    intent.putExtra("dayOfTheWeek", getWeekDay()[0].substring(0, 1).toUpperCase() + getWeekDay()[0].substring(1).toLowerCase());
+                    intent.putExtra("dayOfTheWeek", getDays(0));
                 }
                 context.startActivity(intent);
             }
