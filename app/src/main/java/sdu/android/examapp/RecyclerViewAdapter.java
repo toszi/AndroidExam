@@ -46,8 +46,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private String getDays(int position){
         Calendar rightNow = Calendar.getInstance();
-        Log.d(TAG, "getDays: " + rightNow.get(Calendar.DAY_OF_WEEK) + " position: " + position + " results in = " + (rightNow.get(Calendar.DAY_OF_WEEK) + position - 1));
-        switch((rightNow.get(Calendar.DAY_OF_WEEK) - 1) + position){
+        int result = (rightNow.get(Calendar.DAY_OF_WEEK) - 1) + position;
+        if(result > 7){
+            result = position - 2;
+        }
+        Log.d(TAG, "getDays: " + result + " position = " +  position);
+        switch(result){
             case 1:
                 return "Monday";
             case 2:
